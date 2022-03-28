@@ -1,0 +1,30 @@
+routes
+
+TO get jwt token you need to navigate /sign_in and sign in with your credentials.If you have not been created account navigate to /sign_up and create your own account.
+
+POST /sign_in => { email, password } // to sign_in
+
+POST /sign_up => { username, email, password, confirmPassword } // to sign_up
+
+GET /posts  => all the posts of all users
+
+POST /posts => to create the post // Need jwt token
+data format = {title,message,selectedFile,tags}
+
+PATCH /posts/:id => //to update with id // Need jwt token
+data format = {title,message,selectedFile,tags}
+
+PATCH /posts/:id/like => // to like and unlike the post // Need jwt token
+
+PATCH /posts/:id/comment  => //to comment the post // Need jwt token
+{ text }
+
+PATCH /posts/:id/comment/reply => // to reply comment // Need jwt token
+{ commentId, text }
+
+DELETE /posts/:id => //to delete post with id // Need jwt token
+
+
+Headers
+
+Authorization: Bearer token;
