@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 import config from './config.js';
 import postRouter from "./routes/posts.js";
 import authRouter from "./routes/auth.js";
-
+import usersRouter from "./routes/users.js";
 
 const { CONNECTION_URL, PORT } = config;
 
@@ -21,6 +21,8 @@ app.use(bodyParser.urlencoded({limit: '30mb', extended: false}));
 app.use('/posts', postRouter);
 
 app.use('/', authRouter);
+
+app.use('/users', usersRouter);
 
 
 

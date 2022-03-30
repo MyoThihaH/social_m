@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const postSchema = mongoose.Schema({
     title: String,
     message: String,
-    creatorId: mongoose.Schema.Types.ObjectId,
+    creatorId: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
+    shareId: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
     tags: [String],
     selectedFile: String,
     likeIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "User"}],

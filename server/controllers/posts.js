@@ -1,17 +1,20 @@
 import mongoose from "mongoose";
 import PostMessage from "../models/posts.js";
+import User from "../models/users.js";
 
 
 
 export const getPost = async (req, res) => {
+    const userId = req.userId;
     try{
-        res.status(200).json(await PostMessage.find());
+        const posts = await PostMessage.find({creatorId : userId});
+        const user = await User.findById(userId);
+        res.status(200).json(await PostMessage.find({$or: [{creatorId: { $in: user.following }},{ shareId: { $in: user.following }}]}));
     } catch(err) {
         res.status(400).json(err);
     }
-    
-    
 }
+
 
 export const addPost = async (req, res) => {
     const { title, message, tags, selectedFile} = req.body;
@@ -136,4 +139,23 @@ export const replyComment = async (req, res) => {
         res.status(400).json({"message":error.message});
     }
     
+}
+
+
+export const sharePost = async (req, res) => {
+    const userId = req.userId;
+    const { id: postId } = req.params;
+    try {
+        const post = await PostMessage.findById(postId);
+        const shareArr = post.shareId;
+        if(shareArr.includes(userId))
+            throw new Error("You already share this post");
+        shareArr.push(userId);
+        const resMongo = await PostMessage.findByIdAndUpdate(postId,{ shareId: shareArr}, { new: true});
+        res.status(200).json(resMongo);
+    } catch (err) {
+        res.status(400).json({"messages": err.message});
+    }
+    
+
 }

@@ -24,9 +24,8 @@ export const signIn = async (req, res) => {
                 id: resDoc._id,
                 username: resDoc.username,
                 password: passwordHash,
-            },
-            exp: Math.floor(Date.now() / 1000) + (60 * 60),
-        },config.secret);
+            }
+        },config.secret, { expiresIn: '1d'});
         
         res.status(200).json({token});
     } catch(err) {
@@ -65,9 +64,8 @@ export const signUp = async (req, res) => {
                id: resDoc._id,
                username: resDoc.username,
                password: passwordHash,
-           },
-           exp: Math.floor(Date.now() / 1000) + (60 * 60),
-       },config.secret);
+           }
+       },config.secret, {expiresIn: '1d'});
        res.status(201).json({...resDoc,token});
 
     } catch(err) {

@@ -1,12 +1,17 @@
-routes
 
-TO get jwt token you need to navigate /sign_in and sign in with your credentials.If you have not been created account navigate to /sign_up and create your own account.
 
-POST /sign_in => { email, password } // to sign_in
+TO get jwt token you need to navigate /sign_in and sign in with your credentials.
+If you have not been created account navigate to /sign_up and create your own account.
+
+Routes
 
 POST /sign_up => { username, email, password, confirmPassword } // to sign_up
 
-GET /posts  => all the posts of all users
+POST /sign_in => { email, password } // to sign_in
+
+PATCH /users/:id/follow => to follow and unfollow user // Need jwt token 
+
+GET /posts  => get all the posts of your following users
 
 POST /posts => to create the post // Need jwt token
 data format = {title,message,selectedFile,tags}
@@ -17,14 +22,14 @@ data format = {title,message,selectedFile,tags}
 PATCH /posts/:id/like => // to like and unlike the post // Need jwt token
 
 PATCH /posts/:id/comment  => //to comment the post // Need jwt token
-{ text }
+data format = { text }
 
 PATCH /posts/:id/comment/reply => // to reply comment // Need jwt token
-{ commentId, text }
+data format = { commentId, text }
 
 DELETE /posts/:id => //to delete post with id // Need jwt token
 
 
 Headers
 
-Authorization: Bearer token;
+Authorization: Bearer :token;
