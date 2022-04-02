@@ -1,6 +1,9 @@
+# social_m
+social media project
 
 
-TO get jwt token you need to navigate /sign_in and sign in with your credentials.
+
+To get jwt token you need to navigate /sign_in and sign in with your credentials.
 If you have not been created account navigate to /sign_up and create your own account.
 
 Routes
@@ -9,27 +12,68 @@ POST /sign_up => { username, email, password, confirmPassword } // to sign_up
 
 POST /sign_in => { email, password } // to sign_in
 
-PATCH /users/:id/follow => to follow and unfollow user // Need jwt token 
+PATCH /users/:id/follow => to follow and unfollow user // Need jwt token
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
+```
 
-GET /posts  => get all the posts of your following users
+GET /posts  => get all the posts and share of your following users. // Need jwt token
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
+```
 
 POST /posts => to create the post // Need jwt token
-data format = {title,message,selectedFile,tags}
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
 
-PATCH /posts/:id => //to update with id // Need jwt token
-data format = {title,message,selectedFile,tags}
+example request body = {title:"test",message:"something",selectedFile:"base64 string",tags:"test somethings totestapi"}
+```
 
-PATCH /posts/:id/like => // to like and unlike the post // Need jwt token
+PATCH /posts/:id => to edit post with post id // Need jwt token
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
 
-PATCH /posts/:id/comment  => //to comment the post // Need jwt token
-data format = { text }
+If you want to edit title and message field
+example request body = {title:"test",message:"something"}
+```
 
-PATCH /posts/:id/comment/reply => // to reply comment // Need jwt token
-data format = { commentId, text }
+PATCH /posts/:id/like =>  to like and unlike the post // Need jwt token
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
+```
+
+PATCH /posts/:id/comment  =>  to comment the post // Need jwt token
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
+
+example request body = { "text":"this is comment" }
+```
+
+PATCH /posts/:id/comment/reply =>  to reply comment // Need jwt token
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
+
+example request body = { "commentId":"paste comment id you want to reply", "text":"this is reply" }
+```
 
 DELETE /posts/:id => //to delete post with id // Need jwt token
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
+```
 
-
-Headers
-
-Authorization: Bearer :token;

@@ -40,15 +40,16 @@ export const signUp = async (req, res) => {
   
     
     try {
-        console.log('a')
         const passwordHash = await bcrypt.hash(password, 10);
-        console.log(passwordHash);
         if( !email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
         )){
             res.status(400).json({"message": "Email must be valid"});
         }
         if( await User.findOne({ email })) 
             res.status(402).json({"message": "Email already in use"});
+        console.log(username);
+        if(username == "" || !username)
+            res.status(402).json({"message": "Username must not be empty"})
         if( password != confirmPassword )
         res.status(402).json({"message": "Password must be match"});
         const user =  User({
@@ -73,5 +74,9 @@ export const signUp = async (req, res) => {
     }
     
     
+}
+
+export const welcome = (req, res) => {
+    res.status(200).json({"message":"Welcome from our social_media api"});
 }
 
