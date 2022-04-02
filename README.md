@@ -12,7 +12,6 @@ POST /sign_up =>  // to sign_up
 ```
 header =>
 Content-Type : application/json
-Authorization : Bearer pls_paste_your_jwt_token_here
 
 example request body= { "username":"Bob", "email":"bob@gmail.com", "password":"1234", "confirmPassword":"1234" }
 ```
@@ -21,9 +20,14 @@ POST /sign_in =>  // to sign_in
 ```
 header =>
 Content-Type : application/json
-Authorization : Bearer pls_paste_your_jwt_token_here
 
 example request body= { "email":"bob@gmail.com", "password":"1234" }
+```
+GET /users/getUsers => to get all users id // Need jwt token
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
 ```
 
 PATCH /users/:id/follow => to follow and unfollow user // Need jwt token
