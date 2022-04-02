@@ -8,9 +8,27 @@ If you have not been created account navigate to /sign_up and create your own ac
 
 Routes
 
-POST /sign_up => { username, email, password, confirmPassword } // to sign_up
+POST /sign_up =>  // to sign_up
+```
+header =>
+Content-Type : application/json
 
-POST /sign_in => { email, password } // to sign_in
+example request body= { "username":"Bob", "email":"bob@gmail.com", "password":"1234", "confirmPassword":"1234" }
+```
+
+POST /sign_in =>  // to sign_in
+```
+header =>
+Content-Type : application/json
+
+example request body= { "email":"bob@gmail.com", "password":"1234" }
+```
+GET /users/getUsers => to get all users id // Need jwt token
+```
+header =>
+Content-Type : application/json
+Authorization : Bearer pls_paste_your_jwt_token_here
+```
 
 PATCH /users/:id/follow => to follow and unfollow user // Need jwt token
 ```
@@ -32,7 +50,7 @@ header =>
 Content-Type : application/json
 Authorization : Bearer pls_paste_your_jwt_token_here
 
-example request body = {title:"test",message:"something",selectedFile:"base64 string",tags:"test somethings totestapi"}
+example request body = {"title":"test","message":"something","selectedFile":"base64 string","tags":"test somethings totestapi"}
 ```
 
 PATCH /posts/:id => to edit post with post id // Need jwt token
@@ -42,7 +60,7 @@ Content-Type : application/json
 Authorization : Bearer pls_paste_your_jwt_token_here
 
 If you want to edit title and message field
-example request body = {title:"test",message:"something"}
+example request body = {"title":"test","message":"something"}
 ```
 
 PATCH /posts/:id/like =>  to like and unlike the post // Need jwt token
